@@ -48,25 +48,7 @@ def sendSMSAll(i):
 			
 			init.numberOfAbsences=str(tmpAbs[2])
 			
-			"""if tmp<=5:
-				
-				urlsms_sender=init.urlsms+'to=6938802532'
-				urlsms_sender=urlsms_sender+'&from='+init.fromSender+'&text='+init.text+init.studentName+' '+init.text1+init.numberOfAbsences+"&type=xml"
-				print urlsms_sender
-				try:
-					now=init.get_datetime()
-					init.fp_log.write(now[0]+' '+now[1]+':send SMS for student ' + init.studentName+'\n')
-					
-					result=urllib.urlretrieve(urlsms_sender)
-				except:
-					todo: try 2 more times to send an sms
-					now=init.get_datetime()
-					init.fp_log.write(now[0]+' '+now[1]+':SMS for student ' + init.studentName+' not send successfull\n')
-					
-				tmp+=1
-			
-			else:
-				break"""
+
 				
 			sendSMS(i,init.toSend,init.fromSender,init.studentName,init.text,init.text1,init.numberOfAbsences)
 				
