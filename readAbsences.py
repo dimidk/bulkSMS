@@ -46,7 +46,7 @@ def read_AbsencesFile(filename):
 	init.fp_log.write(now[0]+' '+now[1]+':Read Students'' file '+ filename+ 'and add to dictionary\n')
 
 	sheet=fp.sheet_by_index(0)
-	print sheet.nrows
+
 	for i in range(15,sheet.nrows,1):
 		
 		reload(sys)
@@ -80,7 +80,7 @@ def update_dict(filename):
 	init.fp_log.write(now[0]+' '+now[1]+':Read absences file'+filename+' and update dictionary\n')
 	
 	sheet=fp.sheet_by_index(0)
-	print sheet.nrows
+
 	for i in range(15,sheet.nrows,1):
 		
 		"""this is a solution for problem in converting unicode and ascii"""
@@ -96,7 +96,8 @@ def update_dict(filename):
 		if StudentsAbsences.Studentsabsences.has_key(int(am)):
 			tmpStoixeia=StudentsAbsences.Studentsabsences.get(int(am))
 			if tmpStoixeia[2]==int(absences):
-				print "no absences changed"
+				
+				print "no absences changed, no sms is going to be sent"
 				now=init.get_datetime()
 				init.fp_log.write(now[0]+' '+now[1]+': no absences changed\n')
 				
@@ -108,19 +109,15 @@ def update_dict(filename):
 				
 				tmpStoixeia=StudentsStoixeia.Studentstoixeia.get(s.AM)
 				init.toSend=tmpStoixeia[2]
-				print init.toSend
 				
 				init.studentName=s.Surname +' '+s.Name
-				print init.studentName
 								
 				init.numberOfAbsences=str(s.Absences)
-				print init.numberOfAbsences
-				
-				
+								
 				sendingSMS.sendSMS(i,init.toSend,init.fromSender,init.studentName,init.text,init.text1,init.numberOfAbsences)
 				
 				now=init.get_datetime()
-				init.fp_log.write(now[0]+' '+now[1]+':update student ' + str(s.AM) +' '+s.Surname+' '+s.Name+' '+str(s.Absences) +'\n')
+				init.fp_log.write(now[0]+' '+now[1]+':update student and send sms' + str(s.AM) +' '+s.Surname+' '+s.Name+' '+str(s.Absences) +'\n')
 			
 	filename_prc=filename+'.prc'
 	os.rename(filename,filename_prc)

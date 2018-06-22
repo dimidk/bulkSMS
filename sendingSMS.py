@@ -17,10 +17,12 @@ def sendSMS(i,to,fromSender,name,text,text1,absences):
 	
 	urlsms_sender=init.urlsms+'to='+to
 	urlsms_sender=urlsms_sender+'&from='+fromSender+'&text='+text+name+' '+text1+absences+"&type=xml"
-	"""print urlsms_sender"""
+
 	try:
 		now=init.get_datetime()
 		init.fp_log.write(now[0]+' '+now[1]+':send SMS for student ' + name+'\n')
+		
+		print "send sms to ",to
 				
 		"""result=urllib.urlretrieve(urlsms_sender)"""
 					
@@ -37,17 +39,14 @@ def sendSMSAll(i):
 	for key,value in StudentsStoixeia.Studentstoixeia.items():
 		tmpStoixeia=StudentsStoixeia.Studentstoixeia.get(key)
 		init.toSend=tmpStoixeia[2]
-		print init.toSend
+
 		
 		if StudentsAbsences.Studentsabsences.has_key(key):
 			tmpAbs=StudentsAbsences.Studentsabsences.get(key)
-			print "list",tmpAbs
 			
 			init.studentName=tmpAbs[0]+' '+tmpAbs[1]
-			print init.studentName
 			
 			init.numberOfAbsences=str(tmpAbs[2])
-			print init.numberOfAbsences
 			
 			"""if tmp<=5:
 				

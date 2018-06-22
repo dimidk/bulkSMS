@@ -44,7 +44,7 @@ def read_StoixeiaFile(filename):
 	init.fp_log.write(now[0]+' '+now[1]+':Read Students'' file'+filename+' and add to dictionary\n')
 	
 	sheet=fp.sheet_by_index(0)
-	print sheet.nrows
+
 	for i in range(15,sheet.nrows,1):
 		
 		"""this is a solution for problem in converting unicode and ascii"""
